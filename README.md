@@ -1,5 +1,5 @@
 # Групповой проект «API для YaMDb»
-![Yamdb workflow](https://github.com/gritsenkoserge/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg)
+![Yamdb workflow](https://github.com/GritsenkoSerge/yamdb_final/actions/workflows/yamdb_workflow.yaml/badge.svg)
 ## Описание
 Проект YaMDb собирает отзывы пользователей на произведения. Произведения делятся на категории: «Книги», «Фильмы», «Музыка».
 Сами произведения в YaMDb не хранятся, здесь нельзя посмотреть фильм или послушать музыку.
