@@ -4,7 +4,7 @@ import os
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 
-from reviews.models import Category, Comment, Genre, Review, Title, User
+from ...models import Category, Comment, Genre, Review, Title, User
 
 TABLES = (
     (User, 'users.csv'),

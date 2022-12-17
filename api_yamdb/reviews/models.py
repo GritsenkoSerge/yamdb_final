@@ -7,7 +7,6 @@ from django.db import models
 
 from .validators import username_validator
 
-
 ROLE_USER = 'user'
 ROLE_MODERATOR = 'moderator'
 ROLE_ADMIN = 'admin'
