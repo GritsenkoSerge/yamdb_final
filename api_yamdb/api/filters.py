@@ -1,6 +1,6 @@
 from django_filters import AllValuesFilter, CharFilter, FilterSet
 
-from api_yamdb.reviews.models import Title
+from reviews.models import Title
 
 
 class TitleFilter(FilterSet):

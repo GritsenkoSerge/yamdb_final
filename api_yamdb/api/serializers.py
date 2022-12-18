@@ -3,9 +3,8 @@ from django.core.exceptions import ValidationError
 from django.shortcuts import get_object_or_404
 from rest_framework import serializers
 
-from api_yamdb.reviews.models import (Category, Comment, Genre, Review, Title,
-                                      User)
-from api_yamdb.reviews.validators import username_validator
+from reviews.models import Category, Comment, Genre, Review, Title, User
+from reviews.validators import username_validator
 
 
 class UserSerializer(serializers.ModelSerializer):

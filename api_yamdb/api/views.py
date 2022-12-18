@@ -11,18 +11,16 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 
-from api_yamdb.reviews.models import (Category, Comment, Genre, Review, Title,
-                                      User)
+from api.filters import TitleFilter
+from api.permissions import (IsAdmin, IsAdminModeratorOwnerOrReadOnly,
+                             IsAdminOrReadOnly)
+from api.serializers import (CategorySerializer, CommentSerializer,
+                             GenreSerializer, GetTokenSerializer,
+                             RegistrationSerializer, ReviewSerializer,
+                             TitleDetailSerializer, TitleSerializer,
+                             UserSerializer)
 from api_yamdb.settings import EMAIL_ADRESS
-
-from .filters import TitleFilter
-from .permissions import (IsAdmin, IsAdminModeratorOwnerOrReadOnly,
-                          IsAdminOrReadOnly)
-from .serializers import (CategorySerializer, CommentSerializer,
-                          GenreSerializer, GetTokenSerializer,
-                          RegistrationSerializer, ReviewSerializer,
-                          TitleDetailSerializer, TitleSerializer,
-                          UserSerializer)
+from reviews.models import Category, Comment, Genre, Review, Title, User
 
 
 class UserViewSet(viewsets.ModelViewSet):
