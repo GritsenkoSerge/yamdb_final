@@ -22,31 +22,54 @@
 * djangorestframework-simplejwt 4.8.0
 * requests 2.26.0
 * gunicorn 20.0.4
-* asgiref 3.2.10
 * psycopg2-binary 2.8.6
 * python-dotenv 0.21.0
 * pytz 2020.1
 * sqlparse 0.3.1
 
 ## Установка
-* Перейти в директорию infra
+* Сделать fork репозитория
 ```
-cd infra
+https://github.com/GritsenkoSerge/yamdb_final/fork
 ```
-* Создать файл .env с переменными окружения (при необходимости изменить)
+* В Settings - Secrets - Actions добавить переменные
 ```
-echo DB_ENGINE=django.db.backends.postgresql > .env
-echo DB_NAME=postgres >> .env
-echo POSTGRES_USER=postgres >> .env
-echo POSTGRES_PASSWORD=postgres >> .env
-echo DB_HOST=db >> .env
-echo DB_PORT=5432 >> .env
-echo -ne DJANGO_SECRET_KEY= >> .env
-openssl rand -base64 33 >> .env
+DOCKER_USERNAME - логин на DockerHub
+DOCKER_PASSWORD - пароль на DockerHub
+DB_ENGINE - django.db.backends.postgresql
+DB_NAME - db
+POSTGRES_USER - postgres
+POSTGRES_PASSWORD - postgres
+DB_HOST - IP-адрес или доменное имя вашего сервера
+DB_PORT - 5432
+DJANGO_SECRET_KEY - openssl rand -base64 33
+TELEGRAM_TO - id Telegram-аккаунта для уведомлений
+TELEGRAM_TOKEN - токен Telegram-бота
 ```
-* Собрать и запустить контейнеры 
+* Остановить службу nginx
 ```
-docker-compose up -d --build
+sudo systemctl stop nginx
+```
+* Установить docker
+```
+sudo apt install docker.io 
+```
+* Установить docker-compose. [Официальная документация](https://docs.docker.com/compose/install/)
+* Создайте на сервере директории для файлов инфраструктуры
+```
+cd ~
+mkdir yamdb_infra
+mkdir yamdb_infra/nginx
+``` 
+* Скопировать файлы docker-compose.yaml и nginx/default.conf
+```
+scp ./infra/docker-compose.yaml <ваш_username>@<ваш_сервер>:~/yamdb_infra/
+scp ./infra/nginx/default.conf <ваш_username>@<ваш_сервер>:~/yamdb_infra/nginx/
+```
+* Внести изменение в репозиторий и сделать push (для активации деплоя)
+* После успешного деплоя подключиться к серверу и перейти в директорию инфраструктуры 
+```
+cd ~/yamdb_infra
 ```
 * Произвести миграции
 ```
@@ -60,7 +83,10 @@ docker-compose exec web python3 manage.py createsuperuser
 ```
 docker-compose exec web python3 manage.py collectstatic --noinput
 ```
-### После запуска контейнеров проект доступен по адресам: [REST API](http://localhost/), [ReDoc](http://localhost/redoc/), [Администрирование Django](http://localhost/admin/)
+## После запуска контейнеров проект доступен по адресам:
+* REST API http://<ваш_сервер>/api/v1/
+* ReDoc http://<ваш_сервер>/redoc/
+* Администрирование Django http://<ваш_сервер>/admin/
 
 ## Полезные команды
 * Смена пароля для пользователя user_name
@@ -123,3 +149,5 @@ docker-compose exec web python3 manage.py load_data -v 0
 ### Под руководством:
 * Олег Портнихин (наставник)
 * Андрей Квичанский (ревьюер)
+
+## Постоянный адрес проекта [gritsenko.hopto.org](http://gritsenko.hopto.org:8080/api/v1/)
