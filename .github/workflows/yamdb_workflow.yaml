@@ -77,6 +77,8 @@ jobs:
             echo "ALLOWED_HOSTS=${{ secrets.ALLOWED_HOSTS }}" >> .env
             echo USE_SQLITE=${{ secrets.USE_SQLITE }} >> .env
             sudo docker-compose up -d
+            chmod +x init-letsencrypt.sh
+            sudo ./init-letsencrypt.sh
 
   send_message:
     runs-on: ubuntu-latest
