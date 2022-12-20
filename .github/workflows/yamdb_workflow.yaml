@@ -63,8 +63,6 @@ jobs:
           passphrase: ${{ secrets.PASSPHRASE }}
           script: |
             cd yamdb_infra
-            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/yamdb
-            sudo docker stop $(sudo docker ps -a -q)
             sudo docker-compose stop
             sudo docker-compose rm web
             touch .env
@@ -78,6 +76,7 @@ jobs:
             echo DEBUG=${{ secrets.DEBUG }} >> .env
             echo "ALLOWED_HOSTS=${{ secrets.ALLOWED_HOSTS }}" >> .env
             echo USE_SQLITE=${{ secrets.USE_SQLITE }} >> .env
+            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/yamdb
             sudo docker-compose up -d
 
   send_message:
