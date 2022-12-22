@@ -1,9 +1,22 @@
 import os
 from datetime import timedelta
 
+import sentry_sdk
 from dotenv import load_dotenv
+from sentry_sdk.integrations.django import DjangoIntegration
 
 load_dotenv()
+
+sentry_sdk_dsn = os.getenv('SENTRY_SDK_DSN')
+if sentry_sdk_dsn:
+    sentry_sdk.init(
+        dsn=sentry_sdk_dsn,
+        integrations=[
+            DjangoIntegration(),
+        ],
+        traces_sample_rate=1.0,
+        send_default_pii=True
+    )
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
