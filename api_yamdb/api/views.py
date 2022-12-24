@@ -105,9 +105,6 @@ class ReviewViewSet(viewsets.ModelViewSet):
         serializer.save(author=self.request.user, title=self.get_title())
 
     def get_queryset(self):
-        if getattr(self, 'swagger_fake_view', False):
-            # queryset just for schema generation metadata
-            return Review.objects.none()
         return self.get_title().reviews.all()
 
 
@@ -122,9 +119,6 @@ class CommentViewSet(viewsets.ModelViewSet):
         serializer.save(author=self.request.user, review=self.get_review())
 
     def get_queryset(self):
-        if getattr(self, 'swagger_fake_view', False):
-            # queryset just for schema generation metadata
-            return Comment.objects.none()
         return self.get_review().comments.all()
 
 
