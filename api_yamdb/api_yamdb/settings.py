@@ -143,6 +143,7 @@ SIMPLE_JWT = {
 }
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTOCOL', 'https')
+SECURE_SSL_REDIRECT = not DEBUG
 
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 
