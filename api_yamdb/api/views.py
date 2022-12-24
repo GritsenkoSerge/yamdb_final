@@ -20,7 +20,7 @@ from api.serializers import (CategorySerializer, CommentSerializer,
                              TitleDetailSerializer, TitleSerializer,
                              UserSerializer)
 from api_yamdb.settings import EMAIL_ADRESS
-from reviews.models import Category, Comment, Genre, Review, Title, User
+from reviews.models import Category, Genre, Review, Title, User
 
 
 class UserViewSet(viewsets.ModelViewSet):
