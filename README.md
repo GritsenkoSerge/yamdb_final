@@ -150,4 +150,4 @@ docker-compose exec web python3 manage.py load_data -v 0
 * Олег Портнихин (наставник)
 * Андрей Квичанский (ревьюер)
 
-## Постоянный адрес проекта [gritsenko.hopto.org](https://gritsenko.hopto.org/redoc/)
+## Постоянный адрес проекта [yamdb.gricen.ru](https://yamdb.gricen.ru/redoc/)
